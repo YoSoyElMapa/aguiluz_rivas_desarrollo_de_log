@@ -146,8 +146,11 @@ function crear_editar_log($ruta_archivo,$contenido,$tipo,$ip,$referer,$useragent
 		//Se cierra la escritura
     fclose($archivo);
 	}else{
-    //Se crea la carpeta "logs"
-    mkdir("logs",0777,true);
+    //Se crea la carpeta "logs" si no existe
+    if (!file_exists("logs")) {
+      mkdir("logs", 0777, true);
+    }
+
     //Se apertura el archivo con permisos de escritura
 		$archivo = fopen($ruta_archivo, "w+");
     //Se se escribe en la primer línea del archivo
